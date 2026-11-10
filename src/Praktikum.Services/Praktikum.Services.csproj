@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Praktikum.Data\Praktikum.Data.csproj" />
+    <ProjectReference Include="..\Praktikum.Data.Models\Praktikum.Data.Models.csproj" />
+    <ProjectReference Include="..\Praktikum.Common\Praktikum.Common.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+  </PropertyGroup>
+
+</Project>

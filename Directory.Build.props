@@ -1,0 +1,12 @@
+<Project>
+
+  <!-- Общи настройки за всички проекти в решението Praktikum -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Предупрежденията за nullable са грешки: хваща NullReferenceException още при компилация -->
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+  </PropertyGroup>
+
+</Project>

@@ -361,3 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Praktikum: локални тайни и отчети
+secrets.json
+*.user
+TestResults/
+coveragereport/
+coveragereport-unit/
+appsettings.*.local.json
+
+app.log

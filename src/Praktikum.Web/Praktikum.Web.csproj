@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Praktikum.Services\Praktikum.Services.csproj" />
+    <ProjectReference Include="..\Praktikum.Data\Praktikum.Data.csproj" />
+    <ProjectReference Include="..\Praktikum.Common\Praktikum.Common.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <UserSecretsId>a5bd92e7-d884-409b-8949-b09c0e0535b6</UserSecretsId>
+  </PropertyGroup>
+
+</Project>
