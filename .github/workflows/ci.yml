@@ -1,0 +1,38 @@
+name: CI
+
+# Етап 1: файловете с изходен код още са празни и решението не може да се изгради,
+# затова процесът се стартира само ръчно. Автоматичните тригери (push, pull_request)
+# се добавят, когато кодът бъде написан.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  build-and-test:
+    name: Build и тестове
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Изтегляне на кода
+        uses: actions/checkout@v4
+
+      - name: Инсталиране на .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Възстановяване на пакетите
+        run: dotnet restore
+
+      - name: Build (Release)
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Тестове
+        run: dotnet test --no-build --configuration Release
