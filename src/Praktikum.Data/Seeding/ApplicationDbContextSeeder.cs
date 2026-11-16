@@ -9,7 +9,6 @@ public class ApplicationDbContextSeeder : ISeeder
         {
             new RolesSeeder(),
             new DemoDataSeeder(),
-            new DemoNetworkSeeder(),
         };
 
         foreach (var seeder in seeders)
