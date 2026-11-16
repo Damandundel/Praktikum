@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 760" width="980" height="760" role="img" aria-labelledby="t d" font-family="'Segoe UI', Arial, sans-serif">
+  <title id="t">Многослойна архитектура на Praktikum</title>
+  <desc id="d">Браузърът изпраща заявки към Praktikum.Web, той извиква Praktikum.Services, която чете и записва данни през Praktikum.Data в SQL Server. Praktikum.Data.Models и Praktikum.Common се ползват от слоевете.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+    </marker>
+    <marker id="arrowLight" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="980" height="760" fill="#ffffff"/>
+
+  <text x="490" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">Многослойна архитектура на Praktikum</text>
+  <text x="490" y="60" text-anchor="middle" font-size="13" fill="#475569">Потокът на заявката: Controller → Service → Repository → DbContext → SQL Server</text>
+
+  <!-- Клиент -->
+  <rect x="40" y="80" width="600" height="70" rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+  <text x="56" y="106" font-size="15" font-weight="700" fill="#0f172a">Клиент (браузър)</text>
+  <text x="56" y="130" font-size="12" fill="#334155">HTML5 · CSS3 · JavaScript · клиентска валидация (jQuery Validation) · адаптивен собствен CSS</text>
+
+  <!-- Връзка клиент - Web -->
+  <line x1="340" y1="150" x2="340" y2="200" stroke="#334155" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="352" y="180" font-size="12" fill="#475569">HTTPS заявка и отговор</text>
+
+  <!-- Web -->
+  <rect x="40" y="200" width="600" height="110" rx="10" fill="#e6f4f4" stroke="#0f6e6e" stroke-width="1.5"/>
+  <text x="56" y="224" font-size="15" font-weight="700" fill="#0a5252">Praktikum.Web – потребителски интерфейс</text>
+  <g font-size="11.5" fill="#0f172a" text-anchor="middle">
+    <rect x="56" y="240" width="90" height="26" rx="6" fill="#ffffff" stroke="#0f6e6e"/><text x="101" y="258">Controllers</text>
+    <rect x="154" y="240" width="100" height="26" rx="6" fill="#ffffff" stroke="#0f6e6e"/><text x="204" y="258">Views (Razor)</text>
+    <rect x="262" y="240" width="92" height="26" rx="6" fill="#ffffff" stroke="#0f6e6e"/><text x="308" y="258">ViewModels</text>
+    <rect x="362" y="240" width="136" height="26" rx="6" fill="#ffffff" stroke="#0f6e6e"/><text x="430" y="258">Middleware и грешки</text>
+    <rect x="506" y="240" width="112" height="26" rx="6" fill="#ffffff" stroke="#0f6e6e"/><text x="562" y="258">Identity (cookie)</text>
+  </g>
+  <text x="56" y="296" font-size="12" fill="#334155">ASP.NET Core MVC · [Authorize] по роли и политики · защита от CSRF</text>
+
+  <!-- Връзка Web - Services -->
+  <line x1="340" y1="310" x2="340" y2="360" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="352" y="340" font-size="12" fill="#475569">извиква услугите</text>
+
+  <!-- Services -->
+  <rect x="40" y="360" width="600" height="110" rx="10" fill="#fff7e6" stroke="#b45309" stroke-width="1.5"/>
+  <text x="56" y="384" font-size="15" font-weight="700" fill="#7c2d12">Praktikum.Services – бизнес логика</text>
+  <g font-size="11.5" fill="#0f172a" text-anchor="middle">
+    <rect x="56" y="400" width="70" height="26" rx="6" fill="#ffffff" stroke="#b45309"/><text x="91" y="418">Позиции</text>
+    <rect x="134" y="400" width="96" height="26" rx="6" fill="#ffffff" stroke="#b45309"/><text x="182" y="418">Кандидатури</text>
+    <rect x="238" y="400" width="140" height="26" rx="6" fill="#ffffff" stroke="#b45309"/><text x="308" y="418">Назначения и график</text>
+    <rect x="386" y="400" width="70" height="26" rx="6" fill="#ffffff" stroke="#b45309"/><text x="421" y="418">Дневник</text>
+    <rect x="464" y="400" width="80" height="26" rx="6" fill="#ffffff" stroke="#b45309"/><text x="504" y="418">Оценяване</text>
+    <rect x="552" y="400" width="70" height="26" rx="6" fill="#ffffff" stroke="#b45309"/><text x="587" y="418">Справки</text>
+  </g>
+  <text x="56" y="456" font-size="12" fill="#334155">Правила: застъпване, капацитет, часове · Strategy за оценка · Dependency Injection</text>
+
+  <!-- Връзка Services - Data -->
+  <line x1="340" y1="470" x2="340" y2="520" stroke="#334155" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="352" y="500" font-size="12" fill="#475569">чете и записва през Repository и Unit of Work</text>
+
+  <!-- Data -->
+  <rect x="40" y="520" width="600" height="110" rx="10" fill="#eef2ff" stroke="#4338ca" stroke-width="1.5"/>
+  <text x="56" y="544" font-size="15" font-weight="700" fill="#312e81">Praktikum.Data – достъп до данни</text>
+  <g font-size="11.5" fill="#0f172a" text-anchor="middle">
+    <rect x="56" y="560" width="90" height="26" rx="6" fill="#ffffff" stroke="#4338ca"/><text x="101" y="578">Repository</text>
+    <rect x="154" y="560" width="100" height="26" rx="6" fill="#ffffff" stroke="#4338ca"/><text x="204" y="578">Unit of Work</text>
+    <rect x="262" y="560" width="90" height="26" rx="6" fill="#ffffff" stroke="#4338ca"/><text x="307" y="578">DbContext</text>
+    <rect x="360" y="560" width="84" height="26" rx="6" fill="#ffffff" stroke="#4338ca"/><text x="402" y="578">Миграции</text>
+    <rect x="452" y="560" width="76" height="26" rx="6" fill="#ffffff" stroke="#4338ca"/><text x="490" y="578">Seeding</text>
+  </g>
+  <text x="56" y="616" font-size="12" fill="#334155">Entity Framework Core (Code First) · Fluent конфигурации · индекси и CHECK ограничения</text>
+
+  <!-- Връзка Data - SQL Server -->
+  <line x1="340" y1="630" x2="340" y2="680" stroke="#334155" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="352" y="660" font-size="12" fill="#475569">EF Core · параметризирани SQL заявки</text>
+
+  <!-- База -->
+  <rect x="40" y="680" width="600" height="50" rx="25" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
+  <text x="340" y="702" text-anchor="middle" font-size="15" font-weight="700" fill="#14532d">Microsoft SQL Server</text>
+  <text x="340" y="720" text-anchor="middle" font-size="12" fill="#334155">таблици на Identity и на домейна · миграция InitialCreate</text>
+
+  <!-- Common -->
+  <rect x="700" y="200" width="240" height="110" rx="10" fill="#f8fafc" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="716" y="224" font-size="15" font-weight="700" fill="#0f172a">Praktikum.Common</text>
+  <text x="716" y="248" font-size="12" fill="#334155">Константи (роли, дължини)</text>
+  <text x="716" y="268" font-size="12" fill="#334155">Общи класове и изключения</text>
+  <text x="716" y="292" font-size="11.5" fill="#64748b">Ползва се от всички слоеве</text>
+
+  <!-- Models -->
+  <rect x="700" y="440" width="240" height="110" rx="10" fill="#fdf2f8" stroke="#be185d" stroke-width="1.5"/>
+  <text x="716" y="464" font-size="15" font-weight="700" fill="#831843">Praktikum.Data.Models</text>
+  <text x="716" y="488" font-size="12" fill="#334155">Домейн модел: 11 entities</text>
+  <text x="716" y="508" font-size="12" fill="#334155">и enum-и за статусите</text>
+  <text x="716" y="532" font-size="11.5" fill="#64748b">Ползва се от Services и Data</text>
+
+  <!-- Връзки към Models и Common -->
+  <line x1="640" y1="415" x2="700" y2="470" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowLight)"/>
+  <line x1="640" y1="575" x2="700" y2="520" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowLight)"/>
+  <line x1="640" y1="255" x2="700" y2="255" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrowLight)"/>
+
+  <!-- Бележка -->
+  <rect x="700" y="600" width="240" height="130" rx="10" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="716" y="624" font-size="13" font-weight="700" fill="#0f172a">Правила за зависимостите</text>
+  <text x="716" y="648" font-size="12" fill="#334155">Web → Services → Data</text>
+  <text x="716" y="668" font-size="12" fill="#334155">Services и Data → Data.Models</text>
+  <text x="716" y="688" font-size="12" fill="#334155">Контролерите не ползват</text>
+  <text x="716" y="706" font-size="12" fill="#334155">DbContext директно</text>
+</svg>
