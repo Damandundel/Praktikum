@@ -370,3 +370,6 @@ coveragereport-unit/
 appsettings.*.local.json
 
 app.log
+
+# Качени файлове на потребители
+App_Data/
