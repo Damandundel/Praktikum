@@ -8,9 +8,9 @@
 
 ## Състояние на проекта
 
-Хранилището съдържа структурата на решението (проекти, папки и файлове) за контролната
-проверка от Етап 1. Файловете с изходен код са създадени, но още са празни – кодът се добавя
-постепенно по етапите. В `docs/` е въведението на документацията.
+Етап 1: основата на решението (модели и таблици, DbContext, миграции, начални данни и минимален
+уеб проект) и въведението на документацията. Останалият код и документацията се добавят
+по етапите; планът е в [Praktikum/Documentation/README.md](Praktikum/Documentation/README.md).
 
 ## Роли
 
@@ -32,14 +32,15 @@ xUnit, coverlet, ReportGenerator · GitHub Actions
 
 ```
 Praktikum.sln
-├── src/
-│   ├── Praktikum.Web/          # MVC: Controllers, Views, wwwroot
-│   ├── Praktikum.Services/     # Бизнес логика
-│   ├── Praktikum.Data/         # DbContext, конфигурации, миграции, seeding, хранилища
-│   ├── Praktikum.Data.Models/  # Entities и enum-и
-│   └── Praktikum.Common/       # Константи и общи класове
-├── docs/                       # Документация
-└── .github/workflows/ci.yml    # CI (ръчно стартиране)
+├── Praktikum/
+│   ├── src/
+│   │   ├── Praktikum.Web/          # MVC: Controllers, Views, wwwroot
+│   │   ├── Praktikum.Services/     # Бизнес логика
+│   │   ├── Praktikum.Data/         # DbContext, конфигурации, миграции, seeding, хранилища
+│   │   ├── Praktikum.Data.Models/  # Entities и enum-и
+│   │   └── Praktikum.Common/       # Константи и общи класове
+│   └── Documentation/              # Документация
+└── .github/workflows/ci.yml        # CI
 ```
 
 Поток на заявката: `Controller → Service → Repository → DbContext`.
@@ -47,9 +48,8 @@ Praktikum.sln
 
 ## CI
 
-Работният процес `.github/workflows/ci.yml` се стартира ръчно (`workflow_dispatch`), защото
-приложението още няма изходен код и не може да бъде изградено. Автоматичното стартиране при
-push и pull request се включва, когато кодът бъде добавен.
+Работният процес `.github/workflows/ci.yml` изгражда решението и изпълнява тестовете при всеки
+push и pull request към основния клон, а може да се стартира и ръчно.
 
 ## Сигурност на конфигурацията
 

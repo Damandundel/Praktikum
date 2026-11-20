@@ -1,9 +1,10 @@
 name: CI
 
-# Етап 1: файловете с изходен код още са празни и решението не може да се изгради,
-# затова процесът се стартира само ръчно. Автоматичните тригери (push, pull_request)
-# се добавят, когато кодът бъде написан.
 on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
   workflow_dispatch:
 
 permissions:

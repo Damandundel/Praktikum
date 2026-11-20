@@ -5,15 +5,15 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Praktikum.Common", "src\Praktikum.Common\Praktikum.Common.csproj", "{40797AA7-DC26-4658-8577-B12565EFAC1C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Praktikum.Common", "Praktikum\src\Praktikum.Common\Praktikum.Common.csproj", "{40797AA7-DC26-4658-8577-B12565EFAC1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Praktikum.Data", "src\Praktikum.Data\Praktikum.Data.csproj", "{D77AFB26-ED01-4030-918C-46BCC9867D08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Praktikum.Data", "Praktikum\src\Praktikum.Data\Praktikum.Data.csproj", "{D77AFB26-ED01-4030-918C-46BCC9867D08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Praktikum.Data.Models", "src\Praktikum.Data.Models\Praktikum.Data.Models.csproj", "{4666FB64-FB1B-4E44-9D84-0377E32054E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Praktikum.Data.Models", "Praktikum\src\Praktikum.Data.Models\Praktikum.Data.Models.csproj", "{4666FB64-FB1B-4E44-9D84-0377E32054E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Praktikum.Services", "src\Praktikum.Services\Praktikum.Services.csproj", "{F10ED9AF-B981-44C5-BBCC-EA6332418E16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Praktikum.Services", "Praktikum\src\Praktikum.Services\Praktikum.Services.csproj", "{F10ED9AF-B981-44C5-BBCC-EA6332418E16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Praktikum.Web", "src\Praktikum.Web\Praktikum.Web.csproj", "{8276EB69-1901-4CBB-91F7-31C6B03FE81E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Praktikum.Web", "Praktikum\src\Praktikum.Web\Praktikum.Web.csproj", "{8276EB69-1901-4CBB-91F7-31C6B03FE81E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
