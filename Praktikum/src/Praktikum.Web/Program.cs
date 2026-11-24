@@ -1,4 +1,4 @@
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Microsoft.AspNetCore.Authorization;
@@ -12,6 +12,7 @@ using Praktikum.Data;
 using Praktikum.Data.Models;
 using Praktikum.Data.Repositories;
 using Praktikum.Data.Seeding;
+using Praktikum.Services;
 using Praktikum.Web.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -52,6 +53,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromHours(8);
     options.SlidingExpiration = true;
     options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Error/403";
 });
 
 // Разрешава кирилица в HTML, като <, >, &, " и ' продължават да се кодират (защита от XSS).
@@ -59,9 +61,9 @@ builder.Services.Configure<WebEncoderOptions>(options =>
     options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic));
 
 // Dependency Injection: Controller -> Service -> UnitOfWork/Repository -> DbContext.
-// Сервизите с бизнес логика се добавят в следващите етапи.
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IPositionService, PositionService>();
 
 builder.Services.AddAuthorization(options =>
 {
@@ -81,15 +83,29 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    await dbContext.Database.MigrateAsync();
+
+    // Миграциите са писани за SQL Server. Интеграционните тестове ползват SQLite в паметта
+    // и изключват миграциите ("Database:ApplyMigrations": false), като базата се създава от модела.
+    if (builder.Configuration.GetValue("Database:ApplyMigrations", true))
+    {
+        await dbContext.Database.MigrateAsync();
+    }
+    else
+    {
+        await dbContext.Database.EnsureCreatedAsync();
+    }
+
     await new ApplicationDbContextSeeder().SeedAsync(dbContext, scope.ServiceProvider);
 }
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Privacy");
+    app.UseExceptionHandler("/Error/500");
     app.UseHsts();
 }
+
+// Заявки със статус 403/404 и др. се пренасочват към ErrorController (адресът в браузъра не се променя).
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
