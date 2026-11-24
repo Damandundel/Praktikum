@@ -1,0 +1,26 @@
+﻿@model PositionDetails
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<nav aria-label="Път" class="breadcrumb"><a asp-action="Index">Позиции</a> / <span>@Model.Title</span></nav>
+
+<article class="card">
+    <h1>@Model.Title</h1>
+    <p class="muted">@Model.OrganizationName</p>
+
+    <dl class="meta">
+        <div><dt>Период</dt><dd>@Model.PeriodName (@Model.PeriodStartDate.ToString("dd.MM.yyyy") - @Model.PeriodEndDate.ToString("dd.MM.yyyy"))</dd></div>
+        <div><dt>Срок за кандидатстване</dt><dd>@Model.ApplicationDeadline.ToString("dd.MM.yyyy")</dd></div>
+        <div><dt>Свободни места</dt><dd>@Model.FreeSpots от @Model.Capacity</dd></div>
+    </dl>
+
+    <h2>Описание</h2>
+    <p class="preserve-lines">@Model.Description</p>
+
+    @if (!string.IsNullOrWhiteSpace(Model.OrganizationDescription))
+    {
+        <h2>За организацията</h2>
+        <p class="preserve-lines">@Model.OrganizationDescription</p>
+    }
+</article>

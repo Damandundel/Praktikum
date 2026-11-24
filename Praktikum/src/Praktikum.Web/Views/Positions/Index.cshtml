@@ -1,0 +1,55 @@
+@model Praktikum.Web.ViewModels.Positions.PositionIndexViewModel
+@{
+    ViewData["Title"] = "Стажантски позиции";
+}
+
+<div class="page-header">
+    <h1>Стажантски позиции</h1>
+    <p class="muted">Позиции, за които в момента може да се кандидатства.</p>
+</div>
+
+<form method="get" class="filter-bar" role="search">
+    <div class="form-group">
+        <label for="search">Търсене</label>
+        <input type="text" id="search" name="search" value="@Model.Search" placeholder="Заглавие или организация" />
+    </div>
+    <div class="form-group">
+        <label for="periodId">Период</label>
+        <select id="periodId" name="periodId">
+            <option value="">Всички периоди</option>
+            @foreach (var period in Model.Periods)
+            {
+                <option value="@period.Id" selected="@(Model.PeriodId == period.Id)">@period.Name</option>
+            }
+        </select>
+    </div>
+    <div class="filter-actions">
+        <button type="submit" class="btn btn-primary">Търси</button>
+        <a class="btn btn-outline" asp-action="Index">Изчисти</a>
+    </div>
+</form>
+
+@if (Model.Positions.Count == 0)
+{
+    <div class="card empty-state">
+        <p>Няма позиции, отговарящи на търсенето.</p>
+    </div>
+}
+else
+{
+    <div class="card-grid">
+        @foreach (var position in Model.Positions)
+        {
+            <article class="card position-card">
+                <h2><a asp-action="Details" asp-route-id="@position.Id">@position.Title</a></h2>
+                <p class="muted">@position.OrganizationName</p>
+                <dl class="meta">
+                    <div><dt>Период</dt><dd>@position.PeriodName</dd></div>
+                    <div><dt>Срок за кандидатстване</dt><dd>@position.ApplicationDeadline.ToString("dd.MM.yyyy")</dd></div>
+                    <div><dt>Свободни места</dt><dd>@position.FreeSpots от @position.Capacity</dd></div>
+                </dl>
+                <a class="btn btn-outline btn-small" asp-action="Details" asp-route-id="@position.Id">Виж повече</a>
+            </article>
+        }
+    </div>
+}
