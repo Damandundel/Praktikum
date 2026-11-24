@@ -1,0 +1,58 @@
+@model Praktikum.Web.ViewModels.Account.LoginViewModel
+@using Praktikum.Data.Seeding
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Вход";
+    var showDemoAccounts = Configuration.GetValue<bool>("Demo:ShowAccounts");
+}
+
+<section class="card auth-card">
+    <h1>Вход</h1>
+
+    <form asp-action="Login" method="post" novalidate>
+        <div asp-validation-summary="ModelOnly" class="validation-summary-errors" role="alert"></div>
+        <input type="hidden" asp-for="ReturnUrl" />
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" autocomplete="username" autofocus />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" autocomplete="current-password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-check">
+            <input asp-for="RememberMe" type="checkbox" />
+            <label asp-for="RememberMe"></label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Влез</button>
+    </form>
+
+    <p class="card-footer">Нямате профил? <a asp-action="Register">Регистрирайте се като ученик</a></p>
+</section>
+
+@if (showDemoAccounts)
+{
+    <section class="demo-box auth-card" aria-labelledby="demo-title">
+        <h2 id="demo-title">Демо акаунти</h2>
+        <p>Изберете роля, за да попълните формата. Данните са измислени и общодостъпни.</p>
+        <div class="demo-list">
+            @foreach (var account in DemoAccounts.All)
+            {
+                <button type="button" class="btn btn-outline btn-small demo-fill"
+                        data-email="@account.Email" data-password="@DemoAccounts.Password">
+                    @account.LastName
+                </button>
+            }
+        </div>
+    </section>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
