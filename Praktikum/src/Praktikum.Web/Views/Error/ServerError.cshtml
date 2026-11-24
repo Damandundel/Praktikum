@@ -1,0 +1,15 @@
+@model Praktikum.Web.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Възникна грешка";
+}
+
+<section class="error-page">
+    <p class="error-code">500</p>
+    <h1>Възникна грешка</h1>
+    <p>Нещо се обърка от наша страна. Опитайте отново след малко.</p>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Към началото</a>
+    @if (Model.ShowRequestId)
+    {
+        <p class="request-id">Код на заявката: <code>@Model.RequestId</code></p>
+    }
+</section>

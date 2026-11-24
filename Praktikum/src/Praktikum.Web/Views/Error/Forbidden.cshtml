@@ -1,0 +1,11 @@
+@model Praktikum.Web.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Нямате достъп";
+}
+
+<section class="error-page">
+    <p class="error-code">403</p>
+    <h1>Нямате достъп до тази страница</h1>
+    <p>Профилът ви няма нужните права. Ако смятате, че това е грешка, свържете се с координатора.</p>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Към началото</a>
+</section>

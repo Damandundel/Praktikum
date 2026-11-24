@@ -1,0 +1,11 @@
+@model Praktikum.Web.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Страницата не е намерена";
+}
+
+<section class="error-page">
+    <p class="error-code">404</p>
+    <h1>Страницата не е намерена</h1>
+    <p>Адресът може да е грешен или страницата да е преместена.</p>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Към началото</a>
+</section>

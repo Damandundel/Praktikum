@@ -1,0 +1,11 @@
+@model Praktikum.Web.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Невалидна заявка";
+}
+
+<section class="error-page">
+    <p class="error-code">400</p>
+    <h1>Невалидна заявка</h1>
+    <p>Заявката не може да бъде обработена. Презаредете страницата и опитайте отново.</p>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Към началото</a>
+</section>
