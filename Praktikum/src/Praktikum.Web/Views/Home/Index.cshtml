@@ -8,6 +8,20 @@
         Система за управление на ученически стажове: профили като в LinkedIn, задания като в Classroom
         и директен чат с работодатели и наставници - от кандидатстването до предложението за работа.
     </p>
+
+    @if (User.Identity?.IsAuthenticated != true)
+    {
+        <div class="hero-actions">
+            <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Вход</a>
+            <a class="btn btn-outline" asp-controller="Account" asp-action="Register">Регистрация на ученик</a>
+        </div>
+    }
+    else
+    {
+        <div class="hero-actions">
+            <a class="btn btn-primary" asp-controller="Positions" asp-action="Index">Разгледай позиции</a>
+        </div>
+    }
 </section>
 
 <section class="feature-grid" aria-label="Планирани възможности">

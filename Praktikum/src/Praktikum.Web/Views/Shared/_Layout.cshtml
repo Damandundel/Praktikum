@@ -1,3 +1,9 @@
+﻿@using System.Security.Claims
+@{
+    var isAuthenticated = User.Identity?.IsAuthenticated == true;
+    var displayName = isAuthenticated ? (User.FindFirstValue(ClaimTypes.GivenName) ?? User.Identity!.Name ?? string.Empty) : string.Empty;
+    var initials = displayName.Length > 0 ? displayName[..1].ToUpperInvariant() : "?";
+}
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -11,23 +17,59 @@
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" asp-controller="Home" asp-action="Index"><span class="brand-mark" aria-hidden="true">P</span>Praktikum</a>
+
+            <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+
             <nav id="site-nav" class="site-nav" aria-label="Основна навигация">
-                <span class="nav-spacer"></span>
-                <a class="nav-link" asp-controller="Home" asp-action="Privacy">Поверителност</a>
+                @if (isAuthenticated)
+                {
+                    <a class="nav-link" asp-controller="Positions" asp-action="Index">Позиции</a>
+                    <span class="nav-spacer"></span>
+
+                    <div class="nav-dropdown nav-dropdown-right">
+                        <button type="button" class="nav-trigger" aria-expanded="false" aria-haspopup="true">
+                            <span class="avatar" aria-hidden="true">@initials</span>@displayName <span class="nav-caret"></span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <form asp-controller="Account" asp-action="Logout" method="post">
+                                <button type="submit" class="is-danger">Изход</button>
+                            </form>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <span class="nav-spacer"></span>
+                    <a class="nav-link" asp-controller="Account" asp-action="Login">Вход</a>
+                    <a class="btn btn-primary btn-small" asp-controller="Account" asp-action="Register">Регистрация</a>
+                }
             </nav>
         </div>
     </header>
 
     <main id="main" class="container main-content">
+        @if (TempData["Success"] is string successMessage)
+        {
+            <div class="alert alert-success" role="status">@successMessage</div>
+        }
+        @if (TempData["Error"] is string errorMessage)
+        {
+            <div class="alert alert-danger" role="alert">@errorMessage</div>
+        }
+
         @RenderBody()
     </main>
 
     <footer class="site-footer">
         <div class="container footer-inner">
             <span>&copy; 2026 Praktikum - дипломен проект, ЧПГДН „СофтУни Будител“</span>
+            <a asp-controller="Home" asp-action="Privacy">Поверителност</a>
         </div>
     </footer>
 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
